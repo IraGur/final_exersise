@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+$color-primary: #24585a;
+$color-secondary: #062324;
+
+@mixin rotate($deg) {
+   transform: rotate($deg);
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   font-family: "Quicksand", sans-serif;
+}
+
+body {
+   background: #e7e7e7;
+   h1 {
+      font-size: 70px;
+      text-align: center;
+      margin: 30px 0;
+      color: $color-primary;
+   }
+   h2 {
+      text-align: center;
+      margin: 25px 0;
+      color: #ad8c86;
+      font-size: 20px;
+   }
+   p {
+      color: #041515;
+   }
+}
+.flex {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+input {
+   width: 300px;
+   padding: 10px 20px;
+   border: none;
+   outline-style: none;
+   box-shadow: 0 0 6px rgba(105, 126, 155, 0.2);
+   border-top-left-radius: 7px;
+   border-bottom-left-radius: 7px;
+   font-size: 18px;
+   color: $color-primary;
+   &:focus::placeholder {
+      color: rgba(52, 63, 77, 0.5);
+   }
+}
+
+button {
+   padding: 10px 20px;
+   background-color: #a5b1c3;
+   color: $color-primary;
+   text-align: center;
+   border: none;
+   font-size: 18px;
+   box-shadow: 0 0 6px rgba(105, 126, 155, 0.2);
+   cursor: pointer;
+   border-top-right-radius: 7px;
+   border-bottom-right-radius: 7px;
+
+   &:hover {
+      background-color: $color-primary;
+      color: #a5b1c3;
+   }
+   &.random-btn {
+      border-radius: 7px;
+      margin-left: 10px;
+   }
+}
+
+.meals {
+   width: 880px;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+   margin: 0 auto;
+   margin-top: 20px;
+}
+
+.meal {
+   cursor: pointer;
+   position: relative;
+   height: 270px;
+   width: 290px;
+   text-align: center;
+   border-radius: 5px;
+   overflow: hidden;
+
+   img {
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 0 6px rgba(105, 126, 155, 0.2);
+   }
+}
+.meal-info {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+   background: rgba(0, 0, 0, 0.7);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: opacity 0.2s ease-in;
+   opacity: 0;
+
+   h3 {
+      color: #a5b1c3;
+      font-weight: 700;
+      font-size: 20px;
+   }
+   &:hover {
+      opacity: 1;
+   }
+}
+
+.single-meal {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   margin: 40px auto;
+   width: 70%;
+   height: 80%;
+   background: #d9afa8;
+   border: 20px solid #d9afa8;
+   border-radius: 5px;
+   text-align: center;
+   position: relative;
+   overflow: hidden;
+   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+
+   h1 {
+      font-size: 30px;
+      text-align: center;
+      margin: 0;
+      color: $color-primary;
+   }
+   .single-meal-image {
+      overflow: hidden;
+      img {
+         width: 320px;
+         height: 300px;
+         border-radius: 3px;
+         margin: 30px 0 0;
+         box-shadow: 0 0 6px rgba(105, 126, 155, 0.2);
+      }
+      p {
+         letter-spacing: 0.5px;
+         line-height: 1.5;
+      }
+      ul {
+         height: 120px;
+         list-style-type: none;
+         overflow: auto;
+         overflow-y: scroll;
+
+         &::-webkit-scrollbar {
+            display: none;
+         }
+      }
+      ul li {
+         border: 1px solid #c7c2a9;
+         border-radius: 5px;
+         background-color: #a0b1b1;
+         display: inline-block;
+         color: $color-secondary;
+         font-size: 12px;
+         font-weight: bold;
+         padding: 5px;
+         margin: 0 5px 5px 0;
+      }
+   }
+}
+.single-meal-info {
+   position: relative;
+   margin: 10px;
+   padding: 10px;
+   h1 {
+      margin-bottom: 10px;
+   }
+   h3 {
+      color: #6f6b58;
+      font-weight: 500;
+      font-size: 17px;
+   }
+
+   .instruction {
+      margin-top: 20px;
+      height: 400px;
+      overflow: auto;
+      overflow-y: scroll;
+
+      scrollbar-width: thin;
+      color: $color-secondary;
+      &::-webkit-scrollbar {
+         display: none;
+      }
+   }
+}
+.btn-close {
+   cursor: pointer;
+
+   &:after,
+   &:before {
+      content: "";
+      height: 20px;
+      width: 20px;
+      border-top: 2px solid #415363;
+      position: absolute;
+      top: -6px;
+      right: -19px;
+      @include rotate(-45deg);
+   }
+
+   &:before {
+      right: -5px;
+      @include rotate(45deg);
+   }
+
+   &:hover {
+      opacity: 0.5;
+   }
+}
+
+#single-meal {
+   display: none;
+   position: fixed;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+   background: rgba(0, 0, 0, 0.4);
+   .random {
+      position: relative;
+      height: auto;
+      width: auto;
+      top: auto;
+      left: auto;
+   }
+}
+
+#random-meal {
+   margin: auto;
+   max-width: 800px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+
+   h1 {
+      font-size: 30px;
+   }
+   img {
+      width: 500px;
+      height: 500px;
+      margin-bottom: 25px;
+      border-radius: 5px;
+      box-shadow: 0 0 6px rgba(105, 126, 155, 0.2);
+   }
+   h3 {
+      color: #564643;
+      font-weight: 700;
+      font-size: 19px;
+   }
+   p {
+      letter-spacing: 0.5px;
+      line-height: 1.5;
+      margin: 20px;
+      padding: 10px;
+   }
+   h2 {
+      color: #d39687;
+      display: block;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 15px 0;
+      text-shadow: 1px 0 1px #bc8578;
+   }
+   ul {
+      list-style-type: none;
+      padding-bottom: 20px;
+   }
+}
+
+/* 
+   position: absolute;
+   top: 0px;
+   right: 0px;
+   border: none;
+   color: #415363;
+   text-shadow: 1px 1px 2px #798a8a;
+   font-weight: bold;
+   font-size: 22px;
+   &:hover {
+      color: #798a8a;
+      cursor: pointer;
+   } */
+
+@media (max-width: 700px) {
+   .meals {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   .meal {
+      height: 200px;
+      width: 200px;
+   }
+}
+@media (max-width: 500px) {
+   input[type="text"] {
+      width: 100%;
+   }
+
+   .meals {
+      grid-template-columns: 1fr;
+   }
+
+   .meal {
+      height: 300px;
+      width: 300px;
+   }
+}
