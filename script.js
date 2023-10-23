@@ -129,7 +129,8 @@ submit.addEventListener("submit", searchMeal);
 random.addEventListener("click", getRandomMeal);
 
 mealsEl.addEventListener("click", (e) => {
-   const mealInfo = e.target.parentElement.querySelector(".meal-info");
+   const mealInfo =
+      e.target.tagName === "H3" ? e.target.parentElement : e.target;
 
    if (mealInfo) {
       const mealID = mealInfo.getAttribute("data-mealid");
